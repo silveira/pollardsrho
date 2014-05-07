@@ -5,19 +5,19 @@ def gcd(a, b):
     a, b = b, a%b
   return a
 
-def square_minus_one(x,n):
+def f1(x,n):
   return (x*x-1)%n
 
-def square_plus_one(x,n):
+def f2(x,n):
   return (x*x+1)%n
 
-def power_3_minus_one(x,n):
+def f3(x,n):
   return (x*x*x-1)%n
 
-def random_(x,n):
+def f4(x,n):
   return random.randint(0,n)
 
-def rho(n, f):
+def rho(n, f=f1):
   x = 2
   y = 2
   d = 1
@@ -41,13 +41,33 @@ def prime_factors(n):
     factors.add(n)
   return factors
 
-if __name__ == '__main__':
-  import timeit 
+def test_correct(f,n=100):
   for i in xrange(2,100):
-    print i,
-    t1 = timeit.timeit("rho({}, square_minus_one)".format(i), setup="from __main__ import rho, square_minus_one")
-    t2 = timeit.timeit("rho({}, square_plus_one)".format(i), setup="from __main__ import rho, square_plus_one")
-    t3 = timeit.timeit("rho({}, power_3_minus_one)".format(i), setup="from __main__ import rho, power_3_minus_one")
+    rho_i = rho(i,f)
+    if(rho_i):
+        if (i % rho_i != 0):
+            print i, rho_i, "incorrect!" 
+    else:
+        factors = prime_factors(i)
+        if (len(factors)!=1):
+            print i, rho_i, "incorrect! (not a prime)	" 
+
+if __name__ == '__main__':
+    print "f1"
+    test_correct(f1)
+    print
+    print "f2"
+    test_correct(f2)
+    print
+    print "f3"
+    test_correct(f3)
+    print
+    print "f4"
+    test_correct(f4)
+#  import timeit     
+#    t1 = timeit.timeit("rho({}, f1)".format(i), setup="from __main__ import rho, f1")
+#    t2 = timeit.timeit("rho({}, f2)".format(i), setup="from __main__ import rho, f2")
+#    t3 = timeit.timeit("rho({}, f3)".format(i), setup="from __main__ import rho, f3")
 #    t4 = timeit.timeit("rho({}, random_)".format(i), setup="from __main__ import rho, random_")
-    print t1,t2,t3
+#    print t1,t2,t3
 
