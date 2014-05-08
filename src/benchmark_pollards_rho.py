@@ -29,7 +29,7 @@ def f8(x,n): return (x+math.sqrt(n))%n
 
 def f9(x,n): return (2**x)%n
 
-def f10(x,n): return (2**x)%n
+def f10(x,n): return (2**x+1)%n
 
 def f11(x,n): return (x*2)%n
 
@@ -38,6 +38,8 @@ def f12(x,n): return (x*3)%n
 def f13(x,n): return (x+3)%n
 
 def f14(x,n): return (x*4)%n
+
+def f15(x,n): return (x**2+3)%n
 
 def rho(n, f=f1):
   x = 2
