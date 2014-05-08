@@ -41,6 +41,8 @@ def f14(x,n): return (x*4)%n
 
 def f15(x,n): return (x**2+3)%n
 
+def f16(x,n): return (x+int(math.sqrt(x))+1)%n
+
 def rho(n, f=f1):
   x = 2
   y = 2
